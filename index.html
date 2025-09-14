@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8YEESN55E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-P8YEESN55E');
+    </script>
+
+    <link rel="shortcut icon" href="./favicon.ico">
+    <meta name="description"
+        content="Scalable Policy Evaluation with Video World Models">
+    <meta name="keywords"
+        content="policy evaluation, diffusion models, video prediction, robot manipulation, reinforcement learning">
+    <title>Policy Evaluation with Video Prediction Model</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Add a gray background color and some padding to the footer */
+
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+    </style>
+    <link rel="stylesheet" href="./font.css">
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h2 style="color:white;margin-top:10;">Scalable Policy Evaluation with Video World Models</h3>
+                <br>
+                <p style="color:white"><a>ICRA 2026 Submission</a><br>
+                    <a>Submission</a>
+                    <br>
+        </div>
+    </div>
+
+    <div class="container bg-3 text-center">
+        <br>
+        <div class="row">
+
+            <div class="container spacing">
+            </div>
+            <a type="button" class="btn btn-light" href="#"><i class="fa fa-video-camera" aria-hidden="true"></i>Video</a>&nbsp;
+            <a type="button" class="btn btn-light" href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Paper </a>&nbsp;
+            <a type="button" class="btn btn-light" href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Appendix </a>&nbsp;
+            </a>&nbsp;
+            <div class="container spacing">
+            </div>
+        </div>
+    </div>
+
+    <div class="container bg-3">
+        <div class="row">
+            <h2 class="text-center">Abstract</h2>
+            <hr />
+            <!-- <div class="col-sm-10 col-sm-offset-1 text-center">
+                <img src="./teaser_v7.png" id="teaser" class="img-responsive" alt="Image">
+            </div> -->
+        </div>
+        <br>
+        <p>Training generalist policies for robotic manipulation has shown significant promise and has enabled language-conditioned, multi-task behaviors for robotics. Evaluating such generalist policies, however, is challenging due to the high cost, time, and effort required for real-world testing as well as the safety risks associated with deploying unproven policies on real robots. Manually creating and populating simulation environments with assets for robotic manipulation has not addressed these issues, mainly due to the engineering effort required and due to often large sim-to-real gaps, both in terms of physics and rendering. In this paper, we explore the use of action-conditional video generation models as a scalable, data-driven alternative for policy evaluation. We show how to add action conditioning on existing pre-trained video generation models. This allows leveraging in-the-wild online videos during the pre-training stage, and alleviates the need for a large dataset of paired video-action data, which are expensive to collect for robotic manipulation. Our paper examines the scaling effects of model size, dataset diversity, and pre-training on generalization. Our experiments show that across different metrics, such as policy ranking and correlation between actual policy values and predicted policy values, these models provide a promising avenue to evaluate policies without real-world interactions.
+        </p>
+    </div><br><br>
+
+    <div class="container bg-3">
+        <div class="row">
+            <h2 class="text-center">Overview for our Policy Evaluation Pipeline</h2>
+            <hr />
+            <!-- <div class="col-sm-10 col-sm-offset-1 text-center">
+                <img src="./teaser_v7.png" id="teaser" class="img-responsive" alt="Image">
+            </div> -->
+        </div>
+        <br>
+        <p>
+            We propose to use action-conditional video prediction models as world simulator
+for scalable policy evaluation. This involves (a) deploying the policy into the action-conditional
+video prediction model to generate rollout videos and (b) prompting a VLM to assess their success
+or failure and (c) calculating the correlation with actual policy performance to assess the quality of
+policy evaluation.
+        </p>
+        <div class="col-sm-12 text-center">
+            <img src="./overview_v4.png" id="teaser" class="img-responsive" style="width:100%" alt="Image">
+        </div>
+    </div><br><br>
+
+    <div class="container bg-3">
+        <br>
+
+        <div class="row">
+            <h2 class="text-center">Qualtative Results for Policy Evaluation</h2>
+            <hr />
+
+            <div class="row text-center">
+                <div class="col-sm-3">
+                    <img src="./pot_success.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Success <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="./eggplant_success.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Success <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="./carrot_success.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Success <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="./cup_failure.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Failure <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="row text-center">
+                <div class="col-sm-3">
+                    <img src="./push_t_succ_0.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>Annotation</b>: Success <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="./push_t_succ_1.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>Annotation</b>: Success <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="./push_t_fail_0.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>Annotation</b>: Failure <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <img src="./push_t_fail_1.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>Annotation</b>: Failure <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                    </p>
+                </div>
+            </div>
+            <br>
+
+            <hr />
+            
+            <div class="row text-center">
+                <div class="col-sm-6">
+                    <img src="./lift_success_0.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Success <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <img src="./lift_failure_0.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Failure <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                    </p>
+                </div>
+            </div>
+            <br>
+
+            <div class="row text-center">
+                <div class="col-sm-6">
+                    <img src="./cosmos_can_succ.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Success <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <img src="./can_failure_0.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Failure <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                    </p>
+                </div>
+            </div>
+            <br>
+
+            <div class="row text-center">
+                <div class="col-sm-6">
+                    <img src="./cosmos_square_succ.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Success <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <img src="./cosmos_square_fail.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Failure <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                    </p>
+                </div>
+            </div>
+            <br>
+
+            <div class="row text-center">
+                <div class="col-sm-6">
+                    <img src="./cosmos_tool_hang_succ.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Success <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <img src="./cosmos_tool_hang_fail.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>VLM Annotation</b>: Failure <span class="glyphicon glyphicon-remove" style="color:red;"></span>
+                    </p>
+                </div>
+            </div>
+            <br>
+            
+        </div>
+    </div><br><br>
+
+    <div class="container bg-3">
+        <br>
+
+        <div class="row">
+            <h2 class="text-center">Quantative Results</h2>
+            <hr />
+
+            <p>
+                <b>Correlation Plots for Policy Evaluation</b>. We plot the correlation between predicted policy performance via evaluation in the world model vs. actual policy performance.
+            </p>
+            <div class="col-sm-12 text-center">
+                <img src="./corr_neurips.png" class="img-responsive center" style="width:100%" alt="Image">
+            </div>
+
+            
+            <br>
+            <br>
+            <p>
+                <b>Quantitative Results for Action-conditional Video prediction</b>. We generate next 64 frames in auto-regressive manner and evaluate the results on both RoboMimic (in-distribution) and policy rollout  (out-of-distribution) trajectories.
+            </p>
+            <div class="col-sm-12 text-center">
+                <img src="./video_perf.png" class="img-responsive center" style="width:100%" alt="Image">
+            </div>
+            <!-- <div class="col-sm-12 text-center">
+                <img src="./policy_eval_quan.png" class="img-responsive center" style="width:100%" alt="Image">
+            </div> -->
+        </div>
+
+    </div><br><br>
+
+    <div class="container bg-3">
+        <br>
+        <div class="row">
+            <h2 class="text-center">Failure Cases</h2>
+            <hr />
+            <div class="row text-center">
+                <div class="col-sm-4">
+                    <img src="./failure_case_multi_view.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>Multi-View Inconsistency</b>: Our world model takes two different views as inputs and predicts two views for the next timestep. It’s likely that the predicted two views have inconsistencies.
+                    </p>
+                </div>
+                <div class="col-sm-4">
+                    <img src="./failure_case_repeated.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>Replicated Prediction</b>: When the displacement of the gripper is significantly small, the diffusion model may simply replicate the conditional image as the predicted image.
+                    </p>
+                </div>
+                <div class="col-sm-4">
+                    <img src="./failure_case_hall.gif" class="img-responsive center" style="width:100%" alt="Image">
+                    <p class="text-left">
+                        <b>Hallucinations</b>: The physical plausibility in the generated outputs is still imperfect, which could impact the effectiveness of policy evaluation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+
+    <!-- additional results -->
+
+    <div class="container bg-3">
+        <br>
+        <div class="row">
+            <h2 class="text-center">Additional Results</h2>
+            <hr />
+            <h3 class="text-left">Benchmarking with Different Pre-trained Video Models</h3>
+            <div class="row text-center">
+                <img src="./policy_eval_benchmark.png" class="img-responsive center" style="width:100%" alt="Image">
+
+                <ul class="text-left">
+                    <li><b>IRASim:</b> a diffusion transformer with 16 frames and frame-level action-conditioning module within each transformer block</li>
+                    <li><b>Cosmos-Predict-1-7B</b> and <b>Cosmos-Predict-1-14B</b>: We fine-tuned the Cosmos-Predict1-7B-Video2World and Cosmos-Predict1-14B-Video2World to do next-frame prediction based on single action. The action conditioning is applied to the time-embeddings of the model as well.</li>
+                    <li><b>Wan 2.1 LoRA:</b> We fine-tuned the Wan 2.1 I2V-14B-480P using LoRA. The action conditioning is applied to the time-embeddings of the model.</li>
+                    <li><b>Cosmos-Predict-2-2B:</b> We fine-tuned the Cosmos-Predict2-2B-Video2World. The action conditioning is applied to the time-embeddings of the model as well.</li>
+                </ul>
+            </div>
+            <h3 class="text-left">Scaling Dataset with Policy Rollouts</h3>
+            <div class="row text-center">
+                <div class="col-sm-7">
+                    <img src="./scaling_policy_rollout.png" class="img-responsive center" style="width:100%" alt="Image">
+                </div>
+                <div class="col-sm-5">
+                    <p class="text-left">
+                        We assess the impact of amount of policy rollouts used for video model training for policy evaluation performance on Lift and Square tasks. In general, more policy rollouts leads to better policy evaluation performance. The benefits of more policy rollouts are more significant for complicated tasks (Square), compared to simpler tasks (Lift).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+
+    </div>
+
+    </div><br><br> 
+
+    
+
+
+</body>
+
+</html>
